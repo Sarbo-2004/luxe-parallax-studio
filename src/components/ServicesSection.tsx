@@ -1,11 +1,9 @@
 import React from 'react';
-import { useParallax, useIntersectionObserver } from '../hooks/useParallax';
+import { useIntersectionObserver } from '../hooks/useParallax';
 import { Home, Palette, Lightbulb, Sofa, Compass, Sparkles } from 'lucide-react';
 import textureImage from '../assets/texture-bg.jpg';
 
 const ServicesSection = () => {
-  const backgroundParallax = useParallax({ speed: 0.2, direction: 'up' });
-  const contentParallax = useParallax({ speed: 0.1, direction: 'down' });
   const { isVisible, ref } = useIntersectionObserver(0.1);
 
   const services = [
@@ -44,17 +42,13 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="relative py-32 overflow-hidden parallax-container"
+      className="relative py-32 overflow-hidden"
       ref={ref}
     >
       {/* Background Texture */}
-      <div
-        ref={backgroundParallax.ref}
-        className="absolute inset-0 parallax-element opacity-5"
-        style={{ transform: backgroundParallax.transform }}
-      >
+      <div className="absolute inset-0 opacity-5">
         <div
-          className="w-full h-[110%] bg-cover bg-center"
+          className="w-full h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${textureImage})` }}
         />
       </div>
@@ -77,44 +71,38 @@ const ServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div
-          ref={contentParallax.ref}
-          className="parallax-element"
-          style={{ transform: contentParallax.transform }}
-        >
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={service.title}
-                className={`group bg-surface border border-border p-8 hover-lift transition-luxury duration-1000 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ 
-                  borderRadius: 'var(--radius)',
-                  animationDelay: `${index * 0.1}s`
-                }}
-              >
-                <div className="mb-6">
-                  <service.icon className="w-12 h-12 text-primary group-hover:scale-110 transition-smooth" />
-                </div>
-                
-                <h3 className="font-serif text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-smooth">
-                  {service.title}
-                </h3>
-                
-                <p className="font-sans text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-
-                <div className="mt-6 pt-6 border-t border-border">
-                  <button className="group/btn inline-flex items-center text-primary hover-gold transition-smooth font-sans font-medium text-sm">
-                    Learn More
-                    <span className="ml-2 transform group-hover/btn:translate-x-1 transition-smooth">→</span>
-                  </button>
-                </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={service.title}
+              className={`group bg-surface border border-border p-8 hover-lift transition-luxury duration-1000 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}
+              style={{ 
+                borderRadius: 'var(--radius)',
+                animationDelay: `${index * 0.1}s`
+              }}
+            >
+              <div className="mb-6">
+                <service.icon className="w-12 h-12 text-primary group-hover:scale-110 transition-smooth" />
               </div>
-            ))}
-          </div>
+              
+              <h3 className="font-serif text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-smooth">
+                {service.title}
+              </h3>
+              
+              <p className="font-sans text-muted-foreground leading-relaxed">
+                {service.description}
+              </p>
+
+              <div className="mt-6 pt-6 border-t border-border">
+                <button className="group/btn inline-flex items-center text-primary hover-gold transition-smooth font-sans font-medium text-sm">
+                  Learn More
+                  <span className="ml-2 transform group-hover/btn:translate-x-1 transition-smooth">→</span>
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Call to Action */}

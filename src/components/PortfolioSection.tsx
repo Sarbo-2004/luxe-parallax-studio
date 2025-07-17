@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParallax, useIntersectionObserver } from '../hooks/useParallax';
+import { useIntersectionObserver } from '../hooks/useParallax';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import portfolio1 from '../assets/portfolio-1.jpg';
 import portfolio2 from '../assets/portfolio-2.jpg';
@@ -8,8 +8,6 @@ import textureImage from '../assets/texture-bg.jpg';
 
 const PortfolioSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
-  const backgroundParallax = useParallax({ speed: 0.4, direction: 'up' });
-  const contentParallax = useParallax({ speed: 0.1, direction: 'down' });
   const { isVisible, ref } = useIntersectionObserver(0.1);
 
   const projects = [
@@ -64,17 +62,13 @@ const PortfolioSection = () => {
   return (
     <section
       id="portfolio"
-      className="relative py-32 overflow-hidden parallax-container bg-surface"
+      className="relative py-32 overflow-hidden bg-surface"
       ref={ref}
     >
       {/* Background Texture */}
-      <div
-        ref={backgroundParallax.ref}
-        className="absolute inset-0 parallax-element opacity-10"
-        style={{ transform: backgroundParallax.transform }}
-      >
+      <div className="absolute inset-0 opacity-10">
         <div
-          className="w-full h-[110%] bg-cover bg-center"
+          className="w-full h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${textureImage})` }}
         />
       </div>
@@ -96,16 +90,11 @@ const PortfolioSection = () => {
         </div>
 
         {/* Project Display */}
-        <div
-          ref={contentParallax.ref}
-          className="parallax-element"
-          style={{ transform: contentParallax.transform }}
-        >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Project Image */}
-            <div className={`transition-luxury duration-1000 delay-200 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
-            }`}>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Project Image */}
+          <div className={`transition-luxury duration-1000 delay-200 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+          }`}>
               <div className="relative group">
                 <div className="aspect-[4/3] bg-surface-elevated overflow-hidden" style={{ borderRadius: 'var(--radius)' }}>
                   <img
@@ -192,7 +181,6 @@ const PortfolioSection = () => {
                   <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-smooth" />
                 </button>
               </div>
-            </div>
           </div>
         </div>
 

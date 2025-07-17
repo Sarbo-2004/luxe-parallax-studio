@@ -1,55 +1,39 @@
 import React from 'react';
-import { useParallax, useScrollOpacity } from '../hooks/useParallax';
+import { useIntersectionObserver } from '../hooks/useParallax';
 import heroImage from '../assets/hero-bg.jpg';
 import textureImage from '../assets/texture-bg.jpg';
 
 const HeroSection = () => {
-  const backgroundParallax = useParallax({ speed: 0.5, direction: 'up' });
-  const textParallax = useParallax({ speed: 0.3, direction: 'down' });
-  const overlayParallax = useParallax({ speed: 0.7, direction: 'up' });
-  const scrollOpacity = useScrollOpacity();
+  const { isVisible, ref } = useIntersectionObserver(0.1);
 
   return (
     <section
       id="hero"
-      className="relative h-screen overflow-hidden parallax-container"
-      ref={scrollOpacity.ref}
+      className="relative h-screen overflow-hidden"
+      ref={ref}
     >
       {/* Background Image Layer */}
-      <div
-        ref={backgroundParallax.ref}
-        className="absolute inset-0 parallax-element"
-        style={{ transform: backgroundParallax.transform }}
-      >
+      <div className="absolute inset-0">
         <div
-          className="w-full h-[120%] bg-cover bg-center bg-no-repeat"
+          className="w-full h-full bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
         <div className="absolute inset-0 bg-background/40" />
       </div>
 
       {/* Texture Overlay */}
-      <div
-        ref={overlayParallax.ref}
-        className="absolute inset-0 parallax-element opacity-20"
-        style={{ transform: overlayParallax.transform }}
-      >
+      <div className="absolute inset-0 opacity-20">
         <div
-          className="w-full h-[110%] bg-cover bg-center mix-blend-overlay"
+          className="w-full h-full bg-cover bg-center mix-blend-overlay"
           style={{ backgroundImage: `url(${textureImage})` }}
         />
       </div>
 
       {/* Content */}
-      <div
-        ref={textParallax.ref}
-        className="relative h-full flex items-center justify-center parallax-element"
-        style={{ 
-          transform: textParallax.transform,
-          opacity: scrollOpacity.opacity 
-        }}
-      >
-        <div className="text-center max-w-4xl mx-auto px-6">
+      <div className="relative h-full flex items-center justify-center">
+        <div className={`text-center max-w-4xl mx-auto px-6 transition-luxury duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
           {/* Logo/Brand */}
           <div className="mb-8 animate-fade-in-up">
             <h1 className="font-serif text-6xl lg:text-8xl font-bold text-primary mb-4">
