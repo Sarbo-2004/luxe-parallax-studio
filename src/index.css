@@ -2,57 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Luxurious Interior Design Studio - Design System
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Luxurious Dark Base */
+    --background: 210 11% 8%;
+    --foreground: 35 20% 95%;
+    --surface: 210 15% 12%;
+    --surface-elevated: 210 20% 16%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card & Overlays */
+    --card: 210 15% 12%;
+    --card-foreground: 35 20% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 210 20% 16%;
+    --popover-foreground: 35 20% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary Gold Accent */
+    --primary: 45 85% 65%;
+    --primary-foreground: 210 11% 8%;
+    --primary-muted: 45 35% 25%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary Beige/Neutral */
+    --secondary: 35 15% 85%;
+    --secondary-foreground: 210 11% 8%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Tones */
+    --muted: 210 15% 20%;
+    --muted-foreground: 35 10% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent Marble */
+    --accent: 210 25% 22%;
+    --accent-foreground: 35 20% 95%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --destructive: 0 72% 60%;
+    --destructive-foreground: 35 20% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders & Inputs */
+    --border: 210 15% 25%;
+    --input: 210 15% 20%;
+    --ring: 45 85% 65%;
 
-    --radius: 0.5rem;
+    /* Radius */
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(45 85% 65%), hsl(50 90% 70%));
+    --gradient-dark: linear-gradient(135deg, hsl(210 15% 12%), hsl(210 20% 16%));
+    --gradient-marble: linear-gradient(45deg, hsl(35 15% 85%) 0%, hsl(40 20% 88%) 50%, hsl(35 15% 85%) 100%);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Shadows */
+    --shadow-luxury: 0 25px 50px -12px hsl(210 11% 8% / 0.8);
+    --shadow-gold: 0 10px 30px -10px hsl(45 85% 65% / 0.3);
+    --shadow-elegant: 0 8px 32px -8px hsl(210 15% 8% / 0.6);
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Animations */
+    --transition-luxury: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar (keeping existing) */
+    --sidebar-background: 210 15% 12%;
+    --sidebar-foreground: 35 20% 95%;
+    --sidebar-primary: 45 85% 65%;
+    --sidebar-primary-foreground: 210 11% 8%;
+    --sidebar-accent: 210 15% 20%;
+    --sidebar-accent-foreground: 35 20% 95%;
+    --sidebar-border: 210 15% 25%;
+    --sidebar-ring: 45 85% 65%;
   }
 
   .dark {
@@ -100,6 +120,124 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-serif overflow-x-hidden;
+    font-family: 'Playfair Display', serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Parallax Container */
+  .parallax-container {
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  .parallax-element {
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+
+  /* Typography Classes */
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-sans {
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Luxury Gradients */
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .bg-gradient-marble {
+    background: var(--gradient-marble);
+  }
+
+  /* Luxury Shadows */
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  /* Animations */
+  .transition-luxury {
+    transition: var(--transition-luxury);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-luxury;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-luxury);
+  }
+
+  .hover-gold {
+    @apply transition-smooth;
+  }
+  
+  .hover-gold:hover {
+    color: hsl(var(--primary));
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  /* Parallax Keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shine {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-shine {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200px 100%;
+    animation: shine 2s infinite;
   }
 }
