@@ -1,108 +1,63 @@
 import React from 'react';
 import { useIntersectionObserver } from '../hooks/useParallax';
-import { Award, Users, Clock, Sparkles } from 'lucide-react';
-import textureImage from '../assets/texture-bg.jpg';
 
 const AboutSection = () => {
   const { isVisible, ref } = useIntersectionObserver(0.2);
 
-  const stats = [
-    { icon: Award, label: 'Years Experience', value: '15+' },
-    { icon: Users, label: 'Happy Clients', value: '500+' },
-    { icon: Clock, label: 'Projects Completed', value: '1000+' },
-    { icon: Sparkles, label: 'Design Awards', value: '25+' },
-  ];
-
   return (
     <section
       id="about"
-      className="relative py-32 overflow-hidden"
       ref={ref}
+      className="relative py-24 bg-gray-900 overflow-hidden"
     >
-      {/* Background */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${textureImage})` }}
-        />
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] opacity-10 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <div className={`transition-luxury duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text Content */}
+          <div className={`transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <div className="mb-8">
-              <h2 className="font-serif text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                Our Philosophy
+              <span className="font-sans text-xs text-amber-300 tracking-[0.3em] mb-4 block">
+                ABOUT US
+              </span>
+              <h2 className="font-serif text-5xl font-light text-white leading-tight">
+                Thoughtful <span className="italic font-medium">Interiors</span>
               </h2>
-              <div className="w-16 h-0.5 bg-gradient-gold mb-8" />
             </div>
 
-            <div className="space-y-6 text-lg text-muted-foreground font-sans leading-relaxed">
-              <p>
-                At Luxe Interiors, we believe that exceptional design transcends 
-                mere aesthetics. It's about creating spaces that tell your story, 
-                reflect your personality, and enhance your daily life with 
-                unparalleled sophistication.
-              </p>
-              <p>
-                Our approach combines timeless elegance with contemporary innovation, 
-                carefully curating every element to achieve the perfect balance 
-                between luxury and livability.
-              </p>
-              <p>
-                From concept to completion, we work intimately with our clients 
-                to transform their vision into reality, ensuring every detail 
-                reflects their unique taste and lifestyle.
-              </p>
-            </div>
+            <p className="text-lg text-gray-300 font-light leading-relaxed mb-8">
+              We believe true luxury lies in simplicity and attention to detail. 
+              Every material, every line, speaks to calm sophistication and lasting quality.
+            </p>
 
-            <div className="mt-12">
-              <button
-                onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group inline-flex items-center text-primary hover-gold transition-smooth font-sans font-medium"
-              >
-                Learn About Our Services
-                <span className="ml-2 transform group-hover:translate-x-1 transition-smooth">→</span>
-              </button>
-            </div>
+            <button
+              onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group inline-flex items-center font-sans text-sm tracking-widest text-amber-300 hover:text-white transition-colors duration-300"
+            >
+              <span>Our Services</span>
+              <span className="ml-3 transform group-hover:translate-x-2 transition-transform">→</span>
+            </button>
           </div>
 
-          {/* Stats Grid */}
-          <div className={`transition-luxury duration-1000 delay-300 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          {/* Image or Texture Block */}
+          <div className={`transition-all duration-700 ease-out delay-200 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="grid grid-cols-2 gap-8">
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className="bg-surface border border-border p-8 hover-lift group"
-                  style={{ 
-                    borderRadius: 'var(--radius)',
-                    animationDelay: `${index * 0.1}s`
-                  }}
-                >
-                  <div className="text-center">
-                    <stat.icon className="w-8 h-8 text-primary mx-auto mb-4 group-hover:scale-110 transition-smooth" />
-                    <div className="font-serif text-3xl font-bold text-foreground mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="font-sans text-sm text-muted-foreground uppercase tracking-wider">
-                      {stat.label}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <div
+              className="w-full h-96 bg-cover bg-center rounded-xl shadow-xl"
+              style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80')",
+                backgroundBlendMode: 'overlay',
+              }}
+            />
           </div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-1/2 left-0 w-20 h-0.5 bg-gradient-gold opacity-30" />
-      <div className="absolute bottom-1/4 right-0 w-16 h-0.5 bg-gradient-gold opacity-30" />
     </section>
   );
 };

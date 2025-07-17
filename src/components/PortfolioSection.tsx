@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import portfolio1 from '../assets/portfolio-1.jpg';
 import portfolio2 from '../assets/portfolio-2.jpg';
 import portfolio3 from '../assets/portfolio-3.jpg';
-import textureImage from '../assets/texture-bg.jpg';
 
 const PortfolioSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
@@ -62,29 +61,31 @@ const PortfolioSection = () => {
   return (
     <section
       id="portfolio"
-      className="relative py-32 overflow-hidden bg-surface"
+      className="relative py-32 overflow-hidden bg-gray-900" // Changed to match hero section
       ref={ref}
     >
-      {/* Background Texture */}
+      {/* Background Texture - Matching Hero Section */}
       <div className="absolute inset-0 opacity-10">
-        <div
-          className="w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${textureImage})` }}
-        />
+        <div className="w-full h-full bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] mix-blend-overlay" />
       </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div
-          className={`text-center mb-20 transition-luxury duration-1000 ${
+          className={`text-center mb-20 transition-all duration-1000 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          <h2 className="font-serif text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            Featured Projects
+          <div className="flex justify-center mb-6">
+            <div className="w-24 h-px bg-amber-300 mr-4 my-auto" />
+            <span className="font-sans text-xs text-amber-300 tracking-[0.3em]">OUR PORTFOLIO</span>
+            <div className="w-24 h-px bg-amber-300 ml-4 my-auto" />
+          </div>
+          <h2 className="font-serif text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+            Curated <span className="italic">Excellence</span>
           </h2>
-          <div className="w-24 h-0.5 bg-gradient-gold mx-auto mb-8" />
-          <p className="font-sans text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="font-sans text-lg text-gray-300 max-w-2xl mx-auto">
             Discover our latest creations where luxury meets functionality
           </p>
         </div>
@@ -92,100 +93,100 @@ const PortfolioSection = () => {
         {/* Project Display */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Project Image */}
-          <div className={`transition-luxury duration-1000 delay-200 ${
+          <div className={`transition-all duration-1000 ease-out delay-200 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
           }`}>
               <div className="relative group">
-                <div className="aspect-[4/3] bg-surface-elevated overflow-hidden" style={{ borderRadius: 'var(--radius)' }}>
+                <div className="aspect-[4/3] bg-gray-800 overflow-hidden" style={{ borderRadius: '4px' }}>
                   <img
                     src={currentProjectData.image}
                     alt={currentProjectData.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-luxury"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-background/20 group-hover:bg-background/10 transition-luxury" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500" />
                 </div>
 
                 {/* Navigation Buttons */}
                 <button
                   onClick={prevProject}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-smooth flex items-center justify-center"
-                  style={{ borderRadius: 'var(--radius)' }}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gray-900/80 backdrop-blur-sm text-amber-300 hover:bg-amber-300 hover:text-gray-900 transition-all duration-300 flex items-center justify-center"
+                  style={{ borderRadius: '4px' }}
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button
                   onClick={nextProject}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-smooth flex items-center justify-center"
-                  style={{ borderRadius: 'var(--radius)' }}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gray-900/80 backdrop-blur-sm text-amber-300 hover:bg-amber-300 hover:text-gray-900 transition-all duration-300 flex items-center justify-center"
+                  style={{ borderRadius: '4px' }}
                 >
                   <ChevronRight size={20} />
                 </button>
 
                 {/* Project Counter */}
-                <div className="absolute bottom-4 left-4 bg-background/80 backdrop-blur-sm px-3 py-1 text-sm font-sans text-foreground" style={{ borderRadius: 'var(--radius)' }}>
+                <div className="absolute bottom-4 left-4 bg-gray-900/80 backdrop-blur-sm px-3 py-1 text-sm font-sans text-amber-300" style={{ borderRadius: '4px' }}>
                   {currentProject + 1} / {projects.length}
                 </div>
               </div>
             </div>
 
             {/* Project Details */}
-            <div className={`transition-luxury duration-1000 delay-400 ${
+            <div className={`transition-all duration-1000 ease-out delay-400 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
             }`}>
               <div className="space-y-6">
                 <div>
-                  <div className="text-primary font-sans text-sm font-medium uppercase tracking-wider mb-2">
+                  <div className="text-amber-300 font-sans text-xs uppercase tracking-widest mb-2">
                     {currentProjectData.category}
                   </div>
-                  <h3 className="font-serif text-4xl font-bold text-foreground mb-4">
+                  <h3 className="font-serif text-4xl font-light text-white mb-4">
                     {currentProjectData.title}
                   </h3>
-                  <div className="w-12 h-0.5 bg-gradient-gold mb-6" />
+                  <div className="w-16 h-px bg-amber-300 mb-6" />
                 </div>
 
-                <p className="font-sans text-lg text-muted-foreground leading-relaxed">
+                <p className="font-sans text-lg text-gray-300 leading-relaxed">
                   {currentProjectData.description}
                 </p>
 
                 {/* Project Specs */}
-                <div className="grid grid-cols-3 gap-4 py-6 border-t border-b border-border">
+                <div className="grid grid-cols-3 gap-4 py-6 border-t border-b border-gray-700">
                   <div>
-                    <div className="font-sans text-sm text-muted-foreground uppercase tracking-wider mb-1">
+                    <div className="font-sans text-xs text-gray-400 uppercase tracking-widest mb-1">
                       Size
                     </div>
-                    <div className="font-serif text-lg font-medium text-foreground">
+                    <div className="font-serif text-lg font-light text-white">
                       {currentProjectData.details.size}
                     </div>
                   </div>
                   <div>
-                    <div className="font-sans text-sm text-muted-foreground uppercase tracking-wider mb-1">
+                    <div className="font-sans text-xs text-gray-400 uppercase tracking-widest mb-1">
                       Style
                     </div>
-                    <div className="font-serif text-lg font-medium text-foreground">
+                    <div className="font-serif text-lg font-light text-white">
                       {currentProjectData.details.style}
                     </div>
                   </div>
                   <div>
-                    <div className="font-sans text-sm text-muted-foreground uppercase tracking-wider mb-1">
+                    <div className="font-sans text-xs text-gray-400 uppercase tracking-widest mb-1">
                       Year
                     </div>
-                    <div className="font-serif text-lg font-medium text-foreground">
+                    <div className="font-serif text-lg font-light text-white">
                       {currentProjectData.details.year}
                     </div>
                   </div>
                 </div>
 
                 {/* View Project Button */}
-                <button className="group inline-flex items-center text-primary hover-gold transition-smooth font-sans font-medium">
+                <button className="group inline-flex items-center text-amber-300 hover:text-white transition-colors duration-300 font-sans text-sm tracking-widest">
                   View Full Project
-                  <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-smooth" />
+                  <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
           </div>
         </div>
 
         {/* Project Thumbnails */}
-        <div className={`mt-16 transition-luxury duration-1000 delay-600 ${
+        <div className={`mt-16 transition-all duration-1000 ease-out delay-600 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <div className="flex justify-center space-x-4">
@@ -193,12 +194,12 @@ const PortfolioSection = () => {
               <button
                 key={project.id}
                 onClick={() => setCurrentProject(index)}
-                className={`w-20 h-20 overflow-hidden transition-smooth ${
+                className={`w-16 h-16 overflow-hidden transition-all duration-300 ${
                   index === currentProject
-                    ? 'ring-2 ring-primary ring-offset-2 ring-offset-background'
-                    : 'hover:ring-2 hover:ring-muted hover:ring-offset-2 hover:ring-offset-background'
+                    ? 'ring-2 ring-amber-300 ring-offset-2 ring-offset-gray-900'
+                    : 'hover:ring-2 hover:ring-gray-600 hover:ring-offset-2 hover:ring-offset-gray-900'
                 }`}
-                style={{ borderRadius: 'var(--radius)' }}
+                style={{ borderRadius: '4px' }}
               >
                 <img
                   src={project.image}
