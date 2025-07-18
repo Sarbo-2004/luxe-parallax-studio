@@ -19,13 +19,25 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" ref={ref} className="relative py-32 bg-gray-900 overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] opacity-10 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
-      </div>
+    <section id="contact" ref={ref} className="relative py-32 overflow-hidden bg-gray-900">
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+      {/* ✅ Background Image with Parallax */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('https://plus.unsplash.com/premium_photo-1733320822557-e4ccfb5f20d1?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+          backgroundAttachment: 'fixed',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          zIndex: 0,
+        }}
+      />
+
+      {/* ✅ Overlay */}
+      <div className="absolute inset-0 bg-black/60 z-[1]" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-[2]">
+
         <div className={`text-center mb-20 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <span className="font-sans text-xs text-amber-300 tracking-[0.3em] mb-4 block">CONTACT US</span>
           <h2 className="font-serif text-5xl lg:text-6xl font-light text-white mb-6">Get In Touch</h2>
@@ -36,6 +48,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
+
           {/* Contact Information */}
           <div className={`transition-all duration-1000 ease-out delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
             <div className="space-y-8">
@@ -120,7 +133,7 @@ const ContactSection = () => {
 
               <div className="text-center">
                 <button
-                  onClick={() => window.open('tel:+91 98006 64222', '_self')}
+                  onClick={() => window.open('tel:+91 9800664222', '_self')}
                   className="group relative inline-flex items-center justify-center px-8 py-4 font-sans text-sm font-medium text-black bg-amber-300 hover:bg-amber-200 hover:shadow-lg hover:shadow-amber-300/20 transition-all duration-300 rounded-xl w-full"
                 >
                   <Phone className="mr-2 w-4 h-4" />
@@ -136,12 +149,15 @@ const ContactSection = () => {
               </div>
             </div>
           </div>
+
         </div>
+
       </div>
 
       {/* Decorative Lines */}
       <div className="absolute top-1/3 left-0 w-20 h-px bg-amber-300 opacity-30" />
       <div className="absolute bottom-1/4 right-0 w-16 h-px bg-amber-300 opacity-30" />
+
     </section>
   );
 };

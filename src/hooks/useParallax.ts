@@ -1,30 +1,38 @@
 import { useEffect, useState, useRef } from 'react';
 
-export const useIntersectionObserver = (
-  threshold = 0.1,
-  rootMargin = '0px'
-) => {
+export const useIntersectionObserver = (threshold = 0.1) => {
+  const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!ref.current) return;
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold, rootMargin }
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold }
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
+    observer.observe(ref.current);
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
-      }
+      if (ref.current) observer.unobserve(ref.current);
     };
-  }, [threshold, rootMargin]);
+  }, [threshold]);
 
-  return { isVisible, ref: elementRef };
+  return { ref, isVisible };
+};
+
+export const useParallaxScroll = (factor = 0.4) => {
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffsetY(window.scrollY * factor);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [factor]);
+
+  return offsetY;
 };
