@@ -51,7 +51,7 @@ const BudgetFormSection = () => {
         add_smart_home: formData.add_smart_home === 'yes' ? 1 : 0,
       };
 
-      const response = await fetch('http://localhost:8000/predict', {
+      const response = await fetch('https://luxe-parallax-studio.onrender.com/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
