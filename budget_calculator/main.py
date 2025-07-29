@@ -5,6 +5,9 @@ import pandas as pd
 import pickle
 import xgboost as xgb
 import numpy as np
+import uvicorn
+import os
+
 
 # Load the trained XGBoost model
 with open("xgb_model.pkl", "rb") as f:
@@ -62,3 +65,6 @@ def predict_cost(data: BudgetRequest):
         print("Error during prediction:", e)
         raise HTTPException(status_code=500, detail=str(e))
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))  # fallback if PORT not set
+    uvicorn.run(app, host="0.0.0.0", port=port)
