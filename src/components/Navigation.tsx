@@ -18,7 +18,9 @@ const Navigation = () => {
     { name: 'About', href: '#about' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Services', href: '#services' },
+    { name: 'Budget', href: '#budget' },
     { name: 'Contact', href: '#contact' },
+    
   ];
 
   const scrollToSection = (href: string) => {

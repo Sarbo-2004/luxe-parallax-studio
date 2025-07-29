@@ -6,6 +6,9 @@ import PortfolioSection from '../components/PortfolioSection';
 import ServicesSection from '../components/ServicesSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import BudgetForm from "../components/BudgetFormSection";
+import BudgetFormSection from '../components/BudgetFormSection';
+
 
 const Index = () => {
   return (
@@ -15,6 +18,7 @@ const Index = () => {
       <AboutSection />
       <PortfolioSection />
       <ServicesSection />
+      <BudgetFormSection />
       <ContactSection />
       <Footer />
     </div>
